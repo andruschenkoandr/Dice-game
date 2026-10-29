@@ -1,0 +1,212 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 25px;
+    font-family: Arial, sans-serif;
+    background: linear-gradient(135deg, #eaf4ff, #f8faff);
+    color: #172b4d;
+}
+
+.game-container {
+    width: 100%;
+    max-width: 950px;
+    padding: 35px;
+    text-align: center;
+    background: white;
+    border-radius: 24px;
+    box-shadow: 0 12px 40px rgba(35, 75, 130, 0.12);
+}
+
+h1 {
+    margin: 0;
+    font-size: 38px;
+}
+
+.subtitle {
+    margin: 10px 0 35px;
+    color: #718096;
+    font-size: 17px;
+}
+
+.game-area {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    align-items: center;
+    gap: 20px;
+}
+
+.player h2 {
+    margin: 0 0 12px;
+    font-size: 24px;
+}
+
+.score {
+    width: 100%;
+    max-width: 150px;
+    margin: 0 auto 25px;
+    padding: 10px;
+    border-radius: 10px;
+    background: #08a9ed;
+    color: white;
+    font-size: 25px;
+    font-weight: bold;
+}
+
+.dice {
+    width: 125px;
+    height: 125px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #ffffff;
+    border: 3px solid #d9e2ef;
+    border-radius: 25px;
+    box-shadow: 0 8px 15px rgba(25, 45, 75, 0.15);
+    font-size: 85px;
+    line-height: 1;
+    user-select: none;
+}
+
+.dice-value {
+    margin-top: 15px;
+    color: #718096;
+    font-size: 15px;
+}
+
+.game-controls {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 18px;
+}
+
+.vs {
+    font-size: 26px;
+    font-weight: bold;
+    color: #8b9bb4;
+}
+
+button {
+    width: 100%;
+    padding: 15px 12px;
+    border: none;
+    border-radius: 13px;
+    background: #12e82d;
+    color: #102b19;
+    font-size: 17px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: transform 0.2s, background 0.2s;
+}
+
+button:hover {
+    background: #00d824;
+    transform: translateY(-2px);
+}
+
+button:disabled {
+    cursor: wait;
+    opacity: 0.7;
+    transform: none;
+}
+
+#game-message {
+    min-height: 45px;
+    margin: 0;
+    color: #526782;
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+.rules {
+    margin: 35px 0 18px;
+    color: #718096;
+}
+
+.restart-button {
+    max-width: 220px;
+    background: #eaf1fb;
+    color: #24446d;
+}
+
+.restart-button:hover {
+    background: #dbe8fa;
+}
+
+/* Анімація кидка кубика */
+.dice.rolling {
+    animation: roll-dice 0.65s ease-in-out;
+}
+
+@keyframes roll-dice {
+    0% { transform: translateY(0) rotate(0deg); }
+    20% { transform: translateY(-28px) rotate(90deg); }
+    45% { transform: translateY(-12px) rotate(200deg); }
+    70% { transform: translateY(-24px) rotate(300deg); }
+    100% { transform: translateY(0) rotate(360deg); }
+}
+
+/* Ефект спалаху на весь екран */
+#screen-flash {
+    position: fixed;
+    inset: 0;
+    background: radial-gradient(circle, rgba(255, 220, 50, 0.5) 0%, rgba(255, 60, 60, 0.7) 100%);
+    opacity: 0;
+    pointer-events: none;
+    z-index: 9999;
+    transition: opacity 0.25s ease-in-out;
+}
+
+#screen-flash.active {
+    opacity: 1;
+}
+
+@media (max-width: 700px) {
+    .game-container {
+        padding: 25px 15px;
+    }
+    h1 {
+        font-size: 30px;
+    }
+    .game-area {
+        grid-template-columns: 1fr 1fr;
+        gap: 25px 12px;
+    }
+    .game-controls {
+        grid-column: 1 / -1;
+        grid-row: 2;
+    }
+    .dice {
+        width: 105px;
+        height: 105px;
+        font-size: 70px;
+    }
+}
+
+.game-container.win-effect {
+    animation: pulse-win 0.6s ease;
+}
+
+@keyframes pulse-win {
+    0% { box-shadow: 0 12px 40px rgba(35, 75, 130, 0.12); }
+    50% { box-shadow: 0 0 35px rgba(18, 232, 45, 0.6); background-color: #f0fff4; }
+    100% { box-shadow: 0 12px 40px rgba(35, 75, 130, 0.12); }
+}
+
+.game-container.lose-effect {
+    animation: pulse-lose 2s ease;
+}
+
+@keyframes pulse-lose {
+    0% { box-shadow: 0 12px 40px rgba(35, 75, 130, 0.12); }
+    50% { box-shadow: 0 0 35px rgba(255, 56, 56, 0.6); background-color: #fff5f5; }
+    100% { box-shadow: 0 12px 40px rgba(35, 75, 130, 0.12); }
+}

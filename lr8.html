@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Лабораторна робота 8</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
+</head>
+<body>
+    <div id="screen-flash"></div>
+
+    <main class="game-container">
+        <h1>Більше число</h1>
+        <p class="subtitle">Гравець VS комп</p>
+
+        <section class="game-area">
+            <div class="player">
+                <h2 id="player-name">Гравець</h2>
+                <div class="score" id="player-score">0</div>
+
+                <div class="dice" id="player-dice">⚀</div>
+
+                <p class="dice-value" id="player-value">Кидок: 1</p>
+            </div>
+
+            <div class="game-controls">
+                <div class="vs">VS</div>
+                <button id="generate-button">Кинути кості</button>
+                <p id="game-message" aria-live="polite">
+                    Натисни кнопку, щоб почати
+                </p>
+            </div>
+
+            <div class="player">
+                <h2>Комп'ютер</h2>
+                <div class="score" id="computer-score">0</div>
+
+                <div class="dice" id="computer-dice">⚀</div>
+
+                <p class="dice-value" id="computer-value">Кидок: 1</p>
+            </div>
+        </section>
+
+        <p class="rules">
+            Переможе той, хто першим виграє в 3 раундах
+        </p>
+
+        <button id="restart-button" class="restart-button">
+            Заново
+        </button>
+    </main>
+</body>
+</html>
